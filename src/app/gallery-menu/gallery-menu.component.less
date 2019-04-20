@@ -1,0 +1,31 @@
+.gallery-menu {
+  float: left;
+  position: relative;
+
+  .func-bar {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    padding: 15px;
+
+    .author-intro {
+      cursor: pointer;
+    }
+  }
+
+  div.btn-group {
+    position: fixed;
+    top: 3%;
+    right: 5%;
+    z-index: 10;
+
+    button.dropdown-toggle::after {
+      content: none !important;
+    }
+  }
+}

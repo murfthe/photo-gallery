@@ -1,0 +1,16 @@
+<div class="photo-category-container">
+  <div class="category" *ngFor="let category of categories">
+    <div class="title">
+      <div class="en text-center">{{category.english}}</div>
+      <div class="cn text-center margin-top-10">{{category.name}}</div>
+    </div>
+    <div class="items-container col-lg-12 col-md-12 col-sm-12">
+      <div class="row">
+        <div class="category-item col-lg-3 col-md-6 col-sm-12" *ngFor="let item of category.items">
+          <div class="main-photo"></div>
+          <div class="desc">{{item}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
