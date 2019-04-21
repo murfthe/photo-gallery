@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { bodyScrollEvent } from "../service/body-scroll-event.js";
 
 @Component({
   selector: 'app-gallery-menu',
@@ -10,6 +11,11 @@ export class GalleryMenuComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.toggleBgColor();
+  }
+
+  toggleBgColor() {
+    bodyScrollEvent.toggleBgColorIfScroll();
   }
 
 }

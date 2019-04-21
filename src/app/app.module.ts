@@ -11,6 +11,7 @@ import { HomeComponent } from './home/home.component';
 import { PhotoCategoryComponent } from './photo-category/photo-category.component';
 import { FooterComponent } from './footer/footer.component';
 import { ThemeExhibitionComponent } from './theme-exhibition/theme-exhibition.component';
+import { PublishPhotosComponent } from './publish-photos/publish-photos.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ThemeExhibitionComponent } from './theme-exhibition/theme-exhibition.co
     HomeComponent,
     PhotoCategoryComponent,
     FooterComponent,
-    ThemeExhibitionComponent
+    ThemeExhibitionComponent,
+    PublishPhotosComponent
   ],
   imports: [
     BrowserModule,

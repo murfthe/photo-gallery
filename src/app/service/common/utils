@@ -1,0 +1,27 @@
+import { ElementRef } from '@angular/core';
+
+function getObjectURL(file) {
+
+  var url = null;
+
+  if (window.createObjectURL) {
+    url = window.createObjectURL(file);
+  } else if (window.URL) {
+    url = window.URL.createObjectURL(file);
+  } else if (window.webkitURL) {
+    url = window.webkitURL.createObjectURL(file);
+  }
+
+  return url;
+};
+
+function invokeHandler(nativeElement, type) {
+  if (!nativeElement || !type) return;
+  let ele = new ElementRef(nativeElement);
+  ele.nativeElement[type]();
+}
+
+export const utils = {
+  getObjectURL,
+  invokeHandler
+}

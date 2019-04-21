@@ -1,23 +1,18 @@
 .footer {
-  background: #efefef;
 
   .link-to-contact {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100px;
+    height: 50px;
 
-    .link {
-      display: block;
-      width: 50px;
-      height: 50px;
-      line-height: 50px;
-      text-align: center;
+    .badge {
+      padding: 5px 10px;
       color: white;
       cursor: pointer;
     }
 
-    .link + .link {
+    .badge + .badge {
       margin-left: 20px;
     }
   }
@@ -25,5 +20,10 @@
   .contact-me, .copyright {
     padding: 10px;
     text-align: center;
+  }
+
+  .copyright {
+    background: #f2f2f2;
+    color: #555;
   }
 }

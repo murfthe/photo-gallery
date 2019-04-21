@@ -2,12 +2,27 @@
 
   height: 700px;
   background: white;
+  position: relative;
 
   .bg-image {
     background: url("src/assets/images/home.jpg") no-repeat;
     background-position: bottom;
     width: 100%;
     height: 100%;
+  }
+
+  .func-bar {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 15px;
+
+    .author-intro {
+      cursor: pointer;
+    }
   }
 
 }

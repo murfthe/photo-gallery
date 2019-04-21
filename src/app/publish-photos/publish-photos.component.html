@@ -1,0 +1,46 @@
+<div class="publish">
+  <div class="publish-header shadow bg-warning animated fadeInRight">
+    <span>Publish Photos</span>
+  </div>
+  <div class="publish-body">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-8">
+          <input id="upload" class="hidden" type="file" multiple accept="image/jpeg,image/jpg">
+
+          <div class="photo-list">
+            <div class="upload-photo shadow-sm animated fadeInRight" (click)="triggerClick()">
+              <i class="fa fa-plus"></i>
+              <div class="text-center">最大支持10MB的JPEG照片，不建议加边框与水印</div>
+            </div>
+            <div class="photo-item shadow-sm" *ngFor="let url of uploadedPhotosURL">
+              <img class="uploaded-img"  [src]="url">
+            </div>
+          </div>
+
+          <div class="oversize-photos" *ngIf="oversizePhotos.length>0">
+            <span class="badge badge-danger" *ngFor="let photo of oversizePhotos">{{photo}}</span>
+            照片尺寸大于2MB，无法上传！
+          </div>
+
+        </div>
+        <div class="col-lg-4">
+          <div class="form animated fadeInRight">
+            <div class="form-group">
+              <label for="title">主题标题</label>
+              <input id="title" type="text" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="description">作品描述</label>
+              <textarea id="description" class="form-control" rows="5"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="tags">标签</label>
+              <input id="tags" type="text" class="form-control">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
