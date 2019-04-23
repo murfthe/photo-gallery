@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ElementRef, Renderer2 } from '@angular/core';
 import { forEach, isEmpty, find } from "lodash";
-import { utils } from "../service/common/utils"
+import { UtilsService } from '../service/common/utils/utils.service';
 
 @Component({
   selector: 'app-publish-photos',
@@ -16,7 +16,8 @@ export class PublishPhotosComponent implements OnInit {
 
   constructor(
     private elementRef: ElementRef,
-    private renderer2: Renderer2
+    private renderer2: Renderer2,
+    private utils: UtilsService
   ) { }
 
   ngOnInit() {
@@ -32,7 +33,7 @@ export class PublishPhotosComponent implements OnInit {
     function readAndPreview(file) {
 
       // 照片的size不允许大于10MB
-      if (file.size > 2*1024*1024) {
+      if (file.size > 10*1024*1024) {
         self.oversizePhotos.push(file.name);
       }
 
@@ -63,6 +64,6 @@ export class PublishPhotosComponent implements OnInit {
   }
 
   triggerClick() {
-    utils.invokeHandler(this.elementRef.nativeElement.querySelector("#upload"), "click");
+    this.utils.invokeHandler(this.elementRef.nativeElement.querySelector("#upload"), "click");
   }
 }

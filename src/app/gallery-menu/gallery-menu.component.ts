@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { bodyScrollEvent } from "../service/body-scroll-event.js";
+import { Router, NavigationEnd } from '@angular/router';
+import { Location } from '@angular/common';
+import { GlobalVariable } from '../service/common/global/global.variable';
+import { GalleryMenuService } from '../service/gallery-menu/gallery-menu-service.js';
 
 @Component({
   selector: 'app-gallery-menu',
@@ -8,14 +11,33 @@ import { bodyScrollEvent } from "../service/body-scroll-event.js";
 })
 export class GalleryMenuComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private router: Router,
+    private location: Location
+  ) { }
 
   ngOnInit() {
-    this.toggleBgColor();
+    this.toggleMenuIfScroll();
+    this.toggleReturnButton();
   }
 
-  toggleBgColor() {
-    bodyScrollEvent.toggleBgColorIfScroll();
+  toggleMenuIfScroll() {
+    GalleryMenuService.toggleMenuIfScroll();
+  }
+
+  toggleReturnButton() {
+    this.router.events
+      .subscribe((event) => {
+        if (event instanceof NavigationEnd) {
+          if (this.location.isCurrentPathEqualTo("/home")) {
+            GlobalVariable.isHomePage = true;
+            GalleryMenuService.toggleReturnButton();
+          } else {
+            GlobalVariable.isHomePage = false;
+            GalleryMenuService.toggleReturnButton();
+          }
+        }
+      });
   }
 
 }
