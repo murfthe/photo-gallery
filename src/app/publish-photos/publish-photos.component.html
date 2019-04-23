@@ -13,8 +13,9 @@
               <i class="fa fa-plus"></i>
               <div class="text-center">最大支持10MB的JPEG照片，不建议加边框与水印</div>
             </div>
-            <div class="photo-item shadow-sm" *ngFor="let url of uploadedPhotosURL">
+            <div class="photo-item shadow-sm animated zoomIn" *ngFor="let url of uploadedPhotosURL;index as i">
               <img class="uploaded-img"  [src]="url">
+              <div class="fa fa-close bg-danger" (click)="deletePhoto(i)"></div>
             </div>
           </div>
 

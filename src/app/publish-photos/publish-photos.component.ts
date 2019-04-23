@@ -46,8 +46,6 @@ export class PublishPhotosComponent implements OnInit {
         }
       });
 
-      console.log("size", file.size);
-
       reader.readAsDataURL(file);
     }
 
@@ -65,5 +63,9 @@ export class PublishPhotosComponent implements OnInit {
 
   triggerClick() {
     this.utils.invokeHandler(this.elementRef.nativeElement.querySelector("#upload"), "click");
+  }
+
+  deletePhoto(index) {
+    this.uploadedPhotosURL.splice(index, 1);
   }
 }
