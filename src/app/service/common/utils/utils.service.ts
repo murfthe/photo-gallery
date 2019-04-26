@@ -12,4 +12,5 @@ export class UtilsService {
     let ele = new ElementRef(nativeElement);
     ele.nativeElement[type]();
   }
+
 }

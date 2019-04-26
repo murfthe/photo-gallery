@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ElementRef, Renderer2 } from '@angular/core';
 import { forEach, isEmpty, find } from "lodash";
 import { UtilsService } from '../service/common/utils/utils.service';
+import {PublishPhotosService} from '../service/publish-photos/publish-photos.service';
 
 @Component({
   selector: 'app-publish-photos',
@@ -17,11 +18,13 @@ export class PublishPhotosComponent implements OnInit {
   constructor(
     private elementRef: ElementRef,
     private renderer2: Renderer2,
-    private utils: UtilsService
+    private utils: UtilsService,
+    private publishService: PublishPhotosService
   ) { }
 
   ngOnInit() {
     this.initChangeEvent();
+    this.getPost();
   }
 
   previewPhotos(files) {
@@ -67,5 +70,11 @@ export class PublishPhotosComponent implements OnInit {
 
   deletePhoto(index) {
     this.uploadedPhotosURL.splice(index, 1);
+  }
+
+  getPost() {
+    this.publishService.getPost().subscribe(post => {
+      console.log(post);
+    })
   }
 }

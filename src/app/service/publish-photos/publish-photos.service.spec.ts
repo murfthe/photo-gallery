@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { GalleryMenuService } from './gallery-menu.service';
+import { PublishPhotosService } from './publish-photos.service';
 
-describe('GalleryMenuService', () => {
+describe('PublishPhotosService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: GalleryMenuService = TestBed.get(GalleryMenuService);
+    const service: PublishPhotosService = TestBed.get(PublishPhotosService);
     expect(service).toBeTruthy();
   });
 });
