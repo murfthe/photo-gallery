@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ElementRef, Renderer2 } from '@angular/core';
-import { forEach, isEmpty, find } from "lodash";
+import { forEach, isEmpty, find } from 'lodash';
 import { UtilsService } from '../service/common/utils/utils.service';
 import {PublishPhotosService} from '../service/publish-photos/publish-photos.service';
 
@@ -11,9 +11,11 @@ import {PublishPhotosService} from '../service/publish-photos/publish-photos.ser
 })
 export class PublishPhotosComponent implements OnInit {
 
-  public uploadedPhotosURL:any = [];
+  public uploadedPhotosURL: any = [];
 
   public oversizePhotos = [];
+
+  public post = {};
 
   constructor(
     private elementRef: ElementRef,
@@ -29,21 +31,23 @@ export class PublishPhotosComponent implements OnInit {
 
   previewPhotos(files) {
 
-    if (isEmpty(files)) return;
+    if (isEmpty(files)) {
+      return;
+    }
 
-    var self = this;
+    const self = this;
 
     function readAndPreview(file) {
 
       // 照片的size不允许大于10MB
-      if (file.size > 10*1024*1024) {
+      if (file.size > 10 * 1024 * 1024) {
         self.oversizePhotos.push(file.name);
       }
 
-      let reader = new FileReader();
+      const reader = new FileReader();
 
-      reader.addEventListener("load", function () {
-        var existedURL = find(self.uploadedPhotosURL, url => url == this.result);
+      reader.addEventListener('load', function() {
+        const existedURL = find(self.uploadedPhotosURL, url => url === this.result);
         if (!existedURL) {
           self.uploadedPhotosURL.push(this.result);
         }
@@ -58,14 +62,14 @@ export class PublishPhotosComponent implements OnInit {
 
 
   initChangeEvent() {
-    let self = this;
-    self.renderer2.listen(self.elementRef.nativeElement.querySelector("#upload"), "change", function (event) {
+    const self = this;
+    self.renderer2.listen(self.elementRef.nativeElement.querySelector('#upload'), 'change', event => {
       self.previewPhotos(event.target.files);
     });
   }
 
   triggerClick() {
-    this.utils.invokeHandler(this.elementRef.nativeElement.querySelector("#upload"), "click");
+    this.utils.invokeHandler(this.elementRef.nativeElement.querySelector('#upload'), 'click');
   }
 
   deletePhoto(index) {
@@ -74,7 +78,21 @@ export class PublishPhotosComponent implements OnInit {
 
   getPost() {
     this.publishService.getPost().subscribe(post => {
-      console.log(post);
-    })
+      // console.log(post);
+    });
+  }
+
+  submitPost() {
+    const uploader = this.elementRef.nativeElement.querySelector('#upload');
+    if (!(uploader && uploader.files)) {
+      return;
+    }
+    forEach(uploader.files, file => console.log('file: ', file));
+
+    const formData = new FormData();
+    formData.append('photos', uploader.files);
+    formData.append('post', JSON.stringify(this.post));
+
+    this.publishService.addPost(this.post, uploader.files);
   }
 }

@@ -1,6 +1,6 @@
 const $ = require("node_modules/jquery/dist/jquery.min.js");
 const { debounce } = require("lodash");
-import { GlobalVariable } from '../common/global/global.variable';
+import { GlobalVariable } from "../common/global/global.variable";
 
 function toggleMenuIfScroll() {
   $(document).scroll(debounce(function () {

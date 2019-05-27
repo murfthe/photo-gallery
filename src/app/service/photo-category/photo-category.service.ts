@@ -25,7 +25,7 @@ export class PhotoCategoryService {
   getSomething(): Observable<any> {
     return this.http.get<any>(this.serviceUrl, this.httpOptions)
       .pipe(
-        tap(_ => this.logService.info("fetched something")),
+        tap(_ => this.logService.info('fetched something')),
         catchError(this.errorHandler.handleError('getSomething', []))
       );
   }
